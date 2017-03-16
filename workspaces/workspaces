@@ -1,0 +1,45 @@
+#!/bin/bash
+
+## Read Input
+workspace=$1
+
+showmenu () {
+    echo 
+    echo "===== Workspaces Help =====";
+    echo "* usage: workspaces <workspace>";
+    echo "* e.g. workspaces dev";
+    echo ""
+    echo "Availiable workspaces:"
+    echo " - dev"
+}
+
+workspaces_ws_dev () {
+    gnome-terminal
+    gnome-terminal
+    code
+}
+
+workspaces_open_workspace() {
+    if [ "$workspace" == "dev" ]; 
+        then workspaces_ws_dev;
+        else echo "Workspace" $workspace " does not exist";
+    fi
+}
+
+show_workspaces () {
+    showmenu
+    read choices
+    for choice in $choices ; do
+    case "$choice" in
+        "dev") workspaces_open_workspace
+        # echo "Exit" ;;
+        exit 0 ;;
+        *)
+        echo "Workspace" $workspace " does not exist";
+        exit;;
+    esac
+    done
+}
+
+## Open desired workspace
+if [ -z ${workspace+x} ]; then show_workspaces; exit; else show_workspaces; fi
