@@ -1,0 +1,27 @@
+#! /bin/bash
+
+### GLOBALS
+name='[vscode installer] '
+loc='/usr/lib/code-insider'
+link='LinkId=723968'
+
+## Clear out latest builds and downloads
+echo $name 'Prepping for download...'
+rm -Rf $loc/latest
+rm -f $loc/index.*
+
+## Get latest 
+echo $name 'Downloading latest VSCode...'
+wget https://go.microsoft.com/fwlink/?$link -P $loc
+
+## Rename latest download
+rename $loc/index.html?$link $loc/latest_build $loc/index.html?$link
+
+## Unzip tar file
+echo $name 'Updating files...'
+tar xfz $loc/latest_build
+rm $loc/latest_build
+
+## Move contents to latest
+mv $loc/VSCode-linux-x64/ $loc/latest
+echo $name 'Installation complete!'
