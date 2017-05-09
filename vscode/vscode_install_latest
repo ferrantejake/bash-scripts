@@ -1,31 +1,43 @@
 #! /bin/bash
 
 ### GLOBALS
-name='[vscode installer] '
-loc='/usr/lib/code-insider'
-link='LinkId=723968'
-download='index.html?'$link
+APP='[vscode installer] '
+APP_DIRECTORY='/usr/lib/code-insider'
+APP_EXEC='/usr/lib/code-insider/latest/code-insiders'
+DOWNLOAD_LINKID='LinkId=723968'
+DOWNLOAD='index.html?'$DOWNLOAD_LINKID
 
 
 ## Clear out latest builds and downloads
-echo $name 'Prepping for download...'
-rm -Rf $loc/latest
-rm -f $loc/index.*
+echo $APP 'Prepping for download...'
+rm -Rf $APP_DIRECTORY/latest
+rm -f $APP_DIRECTORY/index.*
 
 ## Get latest 
-echo $name 'Downloading latest VSCode...'
-wget https://go.microsoft.com/fwlink/?$link -P $loc
+echo $APP 'Downloading latest VSCode...'
+wget https://go.microsoft.com/fwlink/?$DOWNLOAD_LINKID -P $APP_DIRECTORY
 
 ## Unzip tar file
-echo $name 'Updating files...'
-echo $name 'Unzipping' $loc/$download
-tar xfz $loc/$download -C $loc
-echo $name 'Unzipped'
+echo $APP 'Updating files...'
+echo $APP 'Unzipping' $APP_DIRECTORY/$DOWNLOAD
+tar xfz $APP_DIRECTORY/$DOWNLOAD -C $APP_DIRECTORY
+echo $APP 'Unzipped'
 
-echo $name 'Cleaning up'
-rm $loc/$download
+echo $APP 'Cleaning up'
+rm $APP_DIRECTORY/$DOWNLOAD
+
+# Remove and re-add global pointers
+rm '/usr/bin/code'
+rm '/usr/bin/code-insiders'
+ln -s APP_EXEC '/usr/bin/code'
+ln -s APP_EXEC '/usr/bin/code-insiders'
+
+# Update permissions
+chmod 0755 '/usr/bin/code'
+chmod 0755 '/usr/bin/code-insiders'
+
 
 ## Move contents to latest
-mv $loc/VSCode-linux-x64/ $loc/latest
-echo $name 'Installation complete!'
+mv $APP_DIRECTORY/VSCode-linux-x64/ $APP_DIRECTORY/latest
+echo $APP 'Installation complete!'
 exit;
