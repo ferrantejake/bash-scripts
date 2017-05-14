@@ -1,5 +1,12 @@
 #! /bin/bash
 
+
+## Environment Settings
+SM=$(printenv SCRIPT_MASTER)
+VERB_PREFIX=$(printenv SCRIPT_VERB_PREFIX)
+LOCAL_SCRIPT='workspace settings'
+
+echo $SM $VERB_PREFIX $LOCAL_SCRIPT
 ## Configure Workspace Keybindings
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control><Super>Up']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control><Super>Down']"
@@ -10,3 +17,4 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Control>
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Control><Shift><Super>Down']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "[]"
+echo $SM "Complete:" $LOCAL_SCRIPT

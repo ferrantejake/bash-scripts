@@ -1,6 +1,6 @@
 #! /bin/bash
 
-ROOT=$(pwd)
+CURRENT_DIRECTORY=$(pwd)
 VSCODE_SCRIPT_PATH='vscode/vscode_install_latest'
 
 ##
@@ -14,7 +14,7 @@ ln -s /lib/bin/code-insiders /lib/bin/code
 ln -s /lib/bin/clear /lib/bin/cls
 
 # Link `vscode_install_latest` to repo `vscode_install_latest`
-ln -s $ROOT/$VSCODE_SCRIPT_PATH /lib/bin/vscode_install_latest
+ln -s $CURRENT_DIRECTORY/$VSCODE_SCRIPT_PATH /lib/bin/vscode_install_latest
 
 # link /user/$username/Code to /usr/username/Documents/ 
 ln -s ~/Documents/Code/ ~/Code
