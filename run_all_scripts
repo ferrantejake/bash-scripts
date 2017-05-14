@@ -1,0 +1,14 @@
+#! /bin/bash
+CURRENT_DIRECTORY=$(pwd)
+
+## Configure workspace
+export SCRIPT_MASTER='Config'
+export VERB_PREFIX='Configuring '
+echo "Configuring workspace settings"
+sh $CURRENT_DIRECTORY"/run_config_scripts"
+
+## Install utilities and software
+export SCRIPT_MASTER='Install'
+export VERB_PREFIX='Installing '
+echo "Installing tools and software"
+sh $CURRENT_DIRECTORY"/run_install_scripts"
