@@ -12,3 +12,4 @@ export VERB_PREFIX=$VERB_PREFIX
 
 sh $CURRENT_DIRECTORY"/git_global_settings"
 sh $CURRENT_DIRECTORY"/workspace_settings"
+sh $CURRENT_DIRECTORY"/gnome_settings"
