@@ -1,1 +1,4 @@
-find a/* mindepth 2 -type f -exec mv {} flattened/ \;                           # Flatten a directory into flattened directory
+# Flatten a directory into flattened directory
+# Semantically: find all files in a folder, from, and move them
+# into another directory, to.
+find from/* -type f -exec mv {} to/ \;
