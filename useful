@@ -1,0 +1,1 @@
+find a/* mindepth 2 -type f -exec mv {} flattened/ \;                           # Flatten a directory into flattened directory
